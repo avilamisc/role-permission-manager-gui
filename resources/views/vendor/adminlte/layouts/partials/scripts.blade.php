@@ -9,6 +9,8 @@
 {{-- <script src="{{ asset('plugins/bootstrap-table/bootstrap-table.min.js') }}"></script> --}}
 {{-- <script src="{{ asset('plugins/bootstrap-table/bootstrap-table-locale-all.js') }}"></script> --}}
 
+{{--  Select2  --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 @stack('script')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

@@ -42,6 +42,7 @@ Vue.mixin({
     }
 })
 
+Vue.component('tabs', require('./components/partials/Tabs.vue'));
 Vue.component('scale-loader', require('vue-spinner/src/ScaleLoader.vue'));
 Vue.component('fade-transition', require('./components/partials/FadeTransition.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));

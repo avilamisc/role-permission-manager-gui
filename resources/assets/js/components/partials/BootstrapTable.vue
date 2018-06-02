@@ -25,10 +25,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <fade-transition mode="out-in">
                             <span class="text-row" v-if="search_result.show">Hasil Pencarian untuk "{{ search_result.value }}" : </span>
                         </fade-transition>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label class="control-label">Show</label>
+                            <select v-model="perpage" @change="search" class="form-control input-sm">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -119,36 +131,45 @@
                 link : {},
                 show: {
                     loader: true
-                }
+                },
+                perpage : 5
             }
         },
         mounted(){
-            console.log(this.$data);
-            var self = this;
-            axios.get(this.url).then(response => {
-                this.setData(response);
-            }).catch(e => {
-                this.errors.push(e)
-            });
-            setTimeout(function(){
-                self.show.loader = false;
-            }, 1000);
+            this.getData;
         },
         methods:{
+            getData(url, type){
+                if(type = null || type = 'get'){
+                    var self = this;
+                    axios.get(this.url).then(response => {
+                        this.setData(response);
+                    }).catch(e => {
+                        this.errors.push(e)
+                    });
+                } elseif (type = 'post') {
+                    axios.post(url, {'value': this.search_value}).then(response => {
+                        this.transition = false;
+                        this.$nextTick(function () {
+                            this.transition = true;
+                            this.setData(response);
+                            this.search_result.show = true;
+                            this.search_result.value = this.search_value;
+                        })
+                    }).catch(e => {
+                        this.errors.push(e)
+                    });
+                    // setTimeout(function(){
+                    self.show.loader = false;
+                // }, 1000);
+                }
+            },
+            setData(response){
+                this.res = response.data;
+            },
             search(){
                 var url = this.res.url + '/s';
-                axios.post(url, {'value': this.search_value}).then(response => {
-                    this.transition = false;
-                    this.$nextTick(function () {
-                        this.transition = true;
-                        this.setData(response);
-                        this.search_result.show = true;
-                        this.search_result.value = this.search_value;
-                        this.search_value = '';
-                    })
-                }).catch(e => {
-                    this.errors.push(e)
-                });
+                this.getData(url,'get')
             },
             getPageByLink(link){
                 axios.get(this.res.links[link]).then(response => {
@@ -174,10 +195,13 @@
                     )
                 }, delay)
             },
-            setData(response){
-                this.res = response.data;
+            render(){
+                console.log('asd');
             },
-            animationHandler(){
+            reset(){
+                this.getData;
+            },
+            refresh(){
 
             }
         }

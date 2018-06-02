@@ -7,7 +7,10 @@
 
     <!-- Bootstrap Table -->
     {{-- <link rel="stylesheet" href="{{ asset('plugins/bootstrap-table/bootstrap-table.min.css') }}"> --}}
-    
+
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
     <link href="{{ mix('/css/all.css') }}" rel="stylesheet" type="text/css" />
 
     @stack('css')
