@@ -23,23 +23,24 @@ Vue.mixin({
     data: function() {
       return {
         default_duration : 300,
+        model : {
+            users: {
+                'no' : 'No',
+                'name' : 'Nama',
+                'email' : 'Email',
+                'role' : 'Role'
+            },
+            role: [
+                'Role',
+                'Permission'
+            ],
+            permission: [
+                'Permission'
+            ]
+        },
       }
     }
 })
-var mixin = {
-	data: function() {
-        return {
-            default_duration : 300,
-            loading: true,
-            // loader: {
-            //     'loading' : 
-            //     'color' : 
-            //     'height' : 
-            //     'width' : 
-            // }
-        }
-    }
-}
 
 Vue.component('scale-loader', require('vue-spinner/src/ScaleLoader.vue'));
 Vue.component('fade-transition', require('./components/partials/FadeTransition.vue'));
@@ -49,11 +50,4 @@ Vue.component('bootstrap-table', require('./components/partials/BootstrapTable.v
 
 const app = new Vue({
     el: '#app',
-    mixins: [mixin],
-    data: function () {
-        return {
-            default_duration: 300,
-            loading: true,
-        }
-    },
 });

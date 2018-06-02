@@ -36,7 +36,7 @@
                     <table data-toggle="table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th v-for="column in this.columns" :name="column" :id="column">{{ column }}</th>
+                                <th v-for="column in $data.model.users" :name="column" :id="column">{{ column }}</th>
                             </tr>
                         </thead>
                         <fade-transition mode="out-in">
@@ -51,11 +51,9 @@
                             v-on:before-enter="beforeEnter" 
                             v-on:enter="enter">
                             <!-- <tr v-if="transition" v-for="(item, key) in datas" v-bind:key="key"> -->
-                            <tr v-if="transition" v-for="(item, key) in res.data" v-bind:key="key">
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.name }}</td>
+                            <tr v-if="transition" v-for="(items, keys) in res.data" v-bind:key="keys">
+                                <td>{{ res.meta.from + keys }}</td>
+                                <td v-for="key in Object.keys($data.model.users)">{{ items[key] }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -117,8 +115,6 @@
                 search_value : '',
                 no_result : false,
                 transition:true,
-                
-                columns: [],
                 rows: [],
                 link : {},
                 show: {
@@ -127,6 +123,7 @@
             }
         },
         mounted(){
+            console.log(this.$data);
             var self = this;
             axios.get(this.url).then(response => {
                 this.setData(response);
