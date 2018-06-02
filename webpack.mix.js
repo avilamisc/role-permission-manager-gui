@@ -1,5 +1,5 @@
 const { mix } = require('laravel-mix');
-
+require('laravel-mix-purgecss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -10,7 +10,7 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+// mix.options({ purifyCss: true });
 mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/app-landing.js', 'public/js/app-landing.js')
    .sourceMaps()
@@ -20,7 +20,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
        'resources/assets/css/ionicons.min.css',
        'node_modules/admin-lte/dist/css/AdminLTE.min.css',
        'node_modules/admin-lte/dist/css/skins/_all-skins.css',
-       'node_modules/icheck/skins/square/blue.css'
+       'node_modules/icheck/skins/square/blue.css',
+       'node_modules/csspin/css/csspin-meter.css'
    ], 'public/css/all.css')
    .combine([
        'resources/assets/css/bootstrap.min.css',
@@ -36,7 +37,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .copy('node_modules/admin-lte/dist/img','public/img')
    .copy('node_modules/admin-lte/plugins','public/plugins')
    .copy('node_modules/icheck/skins/square/blue.png','public/css')
-   .copy('node_modules/icheck/skins/square/blue@2x.png','public/css');
+   .copy('node_modules/icheck/skins/square/blue@2x.png','public/css')
+   .purgeCss();
 
 if (mix.config.inProduction) {
   mix.version();

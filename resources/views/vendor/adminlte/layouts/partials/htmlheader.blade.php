@@ -5,7 +5,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Bootstrap Table -->
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/bootstrap-table/bootstrap-table.min.css') }}"> --}}
+    
     <link href="{{ mix('/css/all.css') }}" rel="stylesheet" type="text/css" />
+
+    @stack('css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

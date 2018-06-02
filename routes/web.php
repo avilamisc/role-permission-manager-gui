@@ -1,4 +1,5 @@
 <?php
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,19 @@ Route::get('admin/dashboard', function() {
 
 Route::get('superadmin/dashboard', function() {
     dd('superadmin');
+});
+
+// Route::get('apis/users',function(){
+//     return response()->json([
+//         'columns' => ['name','email'],
+//         'total' => User::count(),
+//         'rows' => User::all(),
+//     ]);
+// })->name('users');
+
+
+Route::group(['prefix' => 'users'], function(){
+    Route::get('/', 'UserController@index')->name('users');
+    Route::post('/s', 'UserController@search')->name('searchUser');
+    
 });

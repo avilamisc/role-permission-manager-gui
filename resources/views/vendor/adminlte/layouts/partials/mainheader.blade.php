@@ -115,7 +115,7 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu" id="user_menu" style="max-width: 280px;white-space: nowrap;">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="max-width: 280px;white-space: nowrap;overflow: hidden;overflow-text: ellipsis">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="max-width: 280px;white-space: nowrap;overflow-text: ellipsis">
                             <!-- The user image in the navbar-->
                             <img src="{{ Gravatar::get($user->email) }}" class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->

@@ -8,28 +8,28 @@
 @section('main-content')
 	<div class="container-fluid spark-screen">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-
-				<!-- Default box -->
-				<div class="box">
-					<div class="box-header with-border">
-						<h3 class="box-title">Home</h3>
-
-						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-								<i class="fa fa-minus"></i></button>
-							<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-								<i class="fa fa-times"></i></button>
-						</div>
-					</div>
-					<div class="box-body">
-						{{ trans('adminlte_lang::message.logged') }}. Start creating your amazing application!
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-
+			<div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Users</a></li>
+                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="true">Roles</a></li>
+                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Permissions</a></li>
+                        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <bootstrap-table :url="'{{ route('users') }}'"></bootstrap-table>
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                                
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
 @endsection
+@push('script')
+@endpush()
